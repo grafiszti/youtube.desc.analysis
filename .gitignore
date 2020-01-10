@@ -1,0 +1,5 @@
+developer_key.txt
+*.csv
+.idea
+.ipynb_checkpoints
+venv
