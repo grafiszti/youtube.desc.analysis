@@ -11,8 +11,16 @@ def youtube_search(developer_key: str, search_query: str = "Google", max_results
 
     videos = []
 
+    # search for videos
     for search_result in search_response.get('items', []):
         if search_result['id']['kind'] == 'youtube#video':
+            # get full info about video basing on id
+            request = youtube.videos().list(
+                part="snippet,contentDetails,statistics",
+                id=search_result["id"]["videoId"]
+            )
+            response = request.execute()
+
             videos.append(
                 {
                     "id": search_result["id"]["videoId"],
@@ -21,7 +29,7 @@ def youtube_search(developer_key: str, search_query: str = "Google", max_results
                     "publishedAt": search_result["snippet"]["publishedAt"],
                     "channelId": search_result["snippet"]["channelId"],
                     "title": search_result["snippet"]["title"],
-                    "description": search_result["snippet"]["description"],
+                    "description": response["items"][0]["snippet"]["description"],
                     "channelTitle": search_result["snippet"]["channelTitle"]
                 }
             )
@@ -31,8 +39,12 @@ def youtube_search(developer_key: str, search_query: str = "Google", max_results
 
 def main():
     developer_key_filepath = "developer_key.txt"
-    result_dataset_path = "dataset.csv"
-    queries_to_download = ["programming", "coding", "data science", "dogs", "cats", "kittens", "monkeys"]
+    result_dataset_path = "dataset_huge.csv"
+    queries_to_download = [
+        "programming", "coding", "data science", "dogs", "cats", "kittens",
+        "monkeys", "violin", "guitar", "bike", "cars races", "japan", "origami",
+        "castle", "disks", "architecture", "computers", "pope", "iraq", "ukraine"
+    ]
     elements_per_query = 50
 
     if not os.path.exists(developer_key_filepath):
