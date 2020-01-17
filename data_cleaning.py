@@ -1,4 +1,5 @@
 import re
+from typing import List
 
 import nltk
 from nltk.stem import WordNetLemmatizer, PorterStemmer
@@ -13,7 +14,7 @@ class DataCleaner:
 
         self.not_alphanumeric_and_whitespace_regex = "[^a-zA-Z\d\s]"
 
-    def clean_description(self, description: str):
+    def clean_description(self, description: str) -> List[str]:
         temp = description
 
         # remove urls

@@ -16,9 +16,9 @@ def _description_format(description: str) -> str:
 
 def _build_hovertext(df: pd.DataFrame) -> List:
     return (
-            "Query: <b>" + df["search_query"] + "</b><br>" +
-            "Title: <b>" + df["title"] + "</b>" +
-            df["cleaned_description"].apply(_description_format)
+            "Query: <b>" + df["search_query"] + "</b><br>"
+            + "Title: <b>" + df["title"] + "</b>"
+            # + df["cleaned_description"].apply(_description_format)
     )
 
 
