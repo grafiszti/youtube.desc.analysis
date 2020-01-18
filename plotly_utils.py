@@ -28,7 +28,7 @@ def build_2d_figure(df: pd.DataFrame, color_labels: List[int], vectors: np.array
         y=vectors[:, 1],
         hovertext=_build_hovertext(df),
         mode='markers',
-        marker=dict(size=20, color=color_labels, colorscale='Viridis', opacity=0.8)
+        marker=dict(size=10, color=color_labels, colorscale='Viridis', opacity=0.8)
     )])
     fig2d.update_layout(margin=dict(l=0, r=0, b=0, t=0))
     return fig2d
@@ -41,7 +41,7 @@ def build_3d_figure(df: pd.DataFrame, color_labels: List[int], vectors: np.array
         z=vectors[:, 2],
         hovertext=_build_hovertext(df),
         mode='markers',
-        marker=dict(size=20, color=color_labels, colorscale='Viridis', opacity=0.8)
+        marker=dict(size=10, color=color_labels, colorscale='Viridis', opacity=0.8)
     )])
     fig3d.update_layout(margin=dict(l=0, r=0, b=0, t=0))
     return fig3d
