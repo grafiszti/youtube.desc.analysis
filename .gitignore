@@ -1,7 +1,6 @@
 __pycache__/
 developer_key.txt
 secret_api_key.json
-*.csv
 .idea
 .ipynb_checkpoints
 venv
