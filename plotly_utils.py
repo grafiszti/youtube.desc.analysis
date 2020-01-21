@@ -18,7 +18,7 @@ def _build_hovertext(df: pd.DataFrame) -> List:
     return (
             "Query: <b>" + df["search_query"] + "</b><br>"
             + "Title: <b>" + df["title"] + "</b>"
-            # + df["cleaned_description"].apply(_description_format)
+        # + df["cleaned_description"].apply(_description_format)
     )
 
 
@@ -45,3 +45,15 @@ def build_3d_figure(df: pd.DataFrame, color_labels: List[int], vectors: np.array
     )])
     fig3d.update_layout(margin=dict(l=0, r=0, b=0, t=0))
     return fig3d
+
+
+def print_correlation_heatmap(heatmap_data: pd.DataFrame):
+    go.Figure(
+        data=go.Heatmap(
+            z=heatmap_data.values,
+            x=list(map(lambda val: "class " + str(val), heatmap_data.columns)),
+            y=heatmap_data.index,
+            colorscale="Bluered",
+            hoverongaps=False,
+        )
+    ).show()
